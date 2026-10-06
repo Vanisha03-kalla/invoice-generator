@@ -28,15 +28,16 @@ function ClientForm({ client, setClient }) {
 />
 
       <input
-  type="text"
+  type="tel"
+  maxLength="10"
   placeholder="Phone"
   value={client.phone}
-  onChange={(event) =>
+  onChange={(event) =>{ const value = event.target.value.replace(/\D/g, "")
     setClient({
       ...client,
-      phone: event.target.value
+      phone: value
     })
-  }
+  }}
 />
       <input
   type="email"

@@ -29,15 +29,26 @@ function SellerForm({ seller, setSeller }) {
       />
 
       <input
-        type="text"
+        type="tel" /*type="tel" browser ko batata hai:
+"Ye field telephone number ke liye hai." */
+maxLength="10"
         placeholder="Phone"
         value={seller.phone}
-        onChange={(event) =>
-          setSeller({
-            ...seller,
-            phone: event.target.value
-          })
-        }
+
+        onChange={(event) => {
+  const value = event.target.value.replace(/\D/g, "")/*.replace(/\D/g, "")
+→ string mein jo digits nahi hain, unko remove kar do. */
+/*Ye regular expression hai:
+
+\D = anything that is NOT a digit
+g = poori string mein check karo, sirf first character nahi */
+
+  setSeller({
+    ...seller,
+    phone: value
+  })
+}}
+required
       />
 
       <input
